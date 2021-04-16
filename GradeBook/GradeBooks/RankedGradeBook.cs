@@ -18,14 +18,16 @@ namespace GradeBook.GradeBooks
 				throw new InvalidOperationException("Must have more than 5 students to grade.");
             }
 
+            int apparentIndex = relativeIndexOfGrade(averageGrade);
+
             //fix later
-            if (averageGrade >= 90)
+            if (apparentIndex >= Students.Count/5)
                 return 'A';
-            else if (averageGrade >= 80)
+            else if (averageGrade >= (Students.Count/5) * 2)
                 return 'B';
-            else if (averageGrade >= 70)
+            else if (averageGrade >= (Students.Count / 5) * 3)
                 return 'C';
-            else if (averageGrade >= 60)
+            else if (averageGrade >= (Students.Count / 5) * 4)
                 return 'D';
             else
                 return 'F';          

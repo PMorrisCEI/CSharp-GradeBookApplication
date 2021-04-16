@@ -267,5 +267,29 @@ namespace GradeBook.GradeBooks
             
             return JsonConvert.DeserializeObject(json, gradebook);
         }
+
+        private IEnumerable<double> getAverageGrade()
+        {
+            IList<double> averageGradeList = new List<double>();
+            foreach(Student s in Students)
+            {
+                averageGradeList.Add(s.AverageGrade);
+            }
+            return averageGradeList.OrderBy(s => s);
+        }
+
+        internal int relativeIndexOfGrade(double grade)
+        {
+            IEnumerable<double> gradeList = getAverageGrade();
+            for(int i = 0; i < gradeList.Count(); i++)
+            {
+                if(grade < gradeList.ElementAt(i))
+                {
+                    return i;
+                }
+            }
+
+            return gradeList.Count();
+        }
     }
 }
